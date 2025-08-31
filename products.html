@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Products – YAW'S YAMS AND CROPS EXPO.</title>
+  <link rel="stylesheet" href="styles/global.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="logo" href="index.html">Y&Y</a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="products.html" aria-current="page">Products</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding:56px 0">
+    <section class="product-hero">
+      <div class="product-hero__overlay"></div>
+      <div class="product-hero__content container">
+        <h1>Our Fresh Ghanaian Produce</h1>
+        <p>Premium export-grade staples from trusted farmer networks, handled with strict quality control.</p>
+      </div>
+    </section>
+
+
+
+    <section class="catalog-summary" style="margin-top:28px">
+      <div class="catalog-grid">
+        <article class="catalog-card">
+          <h3>Yams</h3>
+          <p>PREMIUM PUNA YAMS and other varieties (Nyame Nti, Olodo, Water yam). Carefully graded for export.</p>
+        </article>
+        <article class="catalog-card">
+          <h3>Groundnuts</h3>
+          <p>ORGANIC GROUNDNUTS, cleaned and shelled, supplied in moisture-safe sacks for long-haul logistics.</p>
+        </article>
+        <article class="catalog-card">
+          <h3>Beans</h3>
+          <p>QUALITY BEANS (cowpea) selected for uniform size and color; debris removed to buyer specifications.</p>
+        </article>
+        <article class="catalog-card">
+          <h3>Maize</h3>
+          <p>FRESH MAIZE from controlled storage, low moisture content, available in white and yellow varieties.</p>
+        </article>
+        <article class="catalog-card">
+          <h3>Agushi</h3>
+          <p>FRESH AGUSHI (melon seed) winnowed and dried to preserve flavor; export-ready packaging available.</p>
+        </article>
+      </div>
+    </section>
+
+    <section style="margin-top:28px">
+      <h2>Packaging & Specs</h2>
+      <p>Standard export packaging: 20kg–25kg cartons or buyer-specified bulk bags. Phytosanitary and certificates of origin provided.</p>
+    </section>
+
+    <section style="margin-top:28px">
+      <h2>Product Gallery</h2>
+
+      <div class="product-gallery">
+        <h3>Yams</h3>
+        <p class="product-subtitle">PREMIUM PUNA YAMS</p>
+        <div class="product-grid" id="grid-yams"></div>
+
+        <h3>Groundnuts</h3>
+        <p class="product-subtitle">ORGANIC GROUNDNUTS</p>
+        <div class="product-grid" id="grid-groundnuts"></div>
+
+        <h3>Beans</h3>
+        <p class="product-subtitle">QUALITY BEANS</p>
+        <div class="product-grid" id="grid-beans"></div>
+
+        <h3>Maize</h3>
+        <p class="product-subtitle">FRESH MAIZE</p>
+        <div class="product-grid" id="grid-maize"></div>
+
+        <h3>Agushi</h3>
+        <p class="product-subtitle">FRESH AGUSHI</p>
+        <div class="product-grid" id="grid-agushi"></div>
+      </div>
+    </section>
+
+    <section style="margin-top:28px">
+      <a class="btn primary" href="catalog/YamEx-Catalog.pdf" target="_blank">Download Product Catalog</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <section>
+        <h4>YAW'S YAMS AND CROPS EXPO.</h4>
+        <p>Exporting premium Ghanaian yams and staple crops.</p>
+      </section>
+      <section>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </section>
+      <section>
+        <h4>Contact</h4>
+        <ul>
+          <li>Email: emmanuelagyei1213@gmail.com</li>
+          <li>Phone: +233 595108757</li>
+          <li>WhatsApp: +233 595108757</li>
+          <li>Address: Dambai, Accra, Ghana</li>
+        </ul>
+      </section>
+    </div>
+    <div class="footer-bottom">© <span id="year"></span> YAW'S YAMS AND CROPS EXPO.. All rights reserved.</div>
+  </footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+  <script>
+    (function(){
+      function imageExists(src){
+        return new Promise(resolve=>{ const i=new Image(); i.onload=()=>resolve(true); i.onerror=()=>resolve(false); const isHttp=/^https?:/i.test(location.protocol); i.src=isHttp? (src+(src.includes('?')?'&':'?')+'cb='+Date.now()):src; });
+      }
+      async function loadCategory(gridId, category){
+        const grid=document.getElementById(gridId); if(!grid) return;
+        const bases=[`images/products/${category}`, `images/${category}`];
+        const extensions=['jpg','jpeg','png','webp','avif'];
+        const items=[];
+        for(let i=1;i<=30;i++){
+          const nums=[String(i).padStart(2,'0'), String(i)];
+          let found=null;
+          for(const base of bases){ if(found) break;
+            for(const n of nums){ if(found) break;
+              for(const ext of extensions){ if(found) break;
+                const variants=[ext, ext.toUpperCase()];
+                for(const e of variants){ const src=`${base}/${n}.${e}`; // eslint-disable-next-line no-await-in-loop
+                  if(await imageExists(src)){ found=src; break; }
+                }
+              }
+            }
+          }
+          if(found) items.push(found);
+        }
+        if(items.length===0) return;
+        items.forEach(src=>{
+          const fig=document.createElement('figure'); fig.className='product-card';
+          const img=document.createElement('img'); img.alt=category; img.loading='lazy'; img.src=src; fig.appendChild(img);
+          grid.appendChild(fig);
+        });
+      }
+      loadCategory('grid-yams','yams');
+      loadCategory('grid-groundnuts','groundnuts');
+      loadCategory('grid-beans','beans');
+      loadCategory('grid-maize','maize');
+      loadCategory('grid-agushi','agushi');
+    })();
+  </script>
+</body>
+</html> 

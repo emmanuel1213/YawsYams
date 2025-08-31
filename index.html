@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YAW'S YAMS AND CROPS EXPO. – Fresh Premium Ghanaian Yams & Crops</title>
+  <meta name="description" content="YAW'S YAMS AND CROPS EXPO. exports fresh premium Ghanaian yams and crops (maize, groundnut, beans, agushi) worldwide.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/global.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="logo" href="index.html">Y&Y</a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero reveal">
+      <div class="slider" id="hero-slider">
+        <button class="nav-btn prev" aria-label="Previous slide" id="prevBtn">◀</button>
+        <button class="nav-btn next" aria-label="Next slide" id="nextBtn">▶</button>
+        <div class="slider-controls" id="dots"></div>
+      </div>
+      <div class="container hero-content">
+        <h1>Welcome to YAW'S YAMS AND CROPS EXPO.</h1>
+        <p class="hero-main"><span>Exporting FRESH PREMIUM &amp; QUALITY Ghanaian YAMS and CROPS worldwide</span><br><span class="hero-highlight">We also distribute to restaurants, schools, hotels, institutions, and more locally in Ghana</span></p>
+        <div class="hero-cta">
+          <a class="btn primary" href="products.html">View Our Products</a>
+          <a class="btn" href="catalog/YamEx-Catalog.pdf" target="_blank" rel="noopener">Download Catalog</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="values reveal">
+      <div class="container">
+        <h2>Our Promise: Quality, Traceability, Reliability</h2>
+        <div class="card-grid">
+          <article class="card">
+            <h3>Quality</h3>
+            <p>Carefully sorted Grade A export yams and crops, handled under strict hygiene.</p>
+          </article>
+          <article class="card">
+            <h3>Traceability</h3>
+            <p>Farm-to-port transparency with batch tracking and farmer network documentation.</p>
+          </article>
+          <article class="card">
+            <h3>Reliability</h3>
+            <p>On-time shipments with temperature-aware logistics and export compliance.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about reveal">
+      <div class="container two-col">
+        <div>
+          <h2>About Us</h2>
+          <p>We are a Passionately Purpose driven Ghanaian agribusiness specializing in the distribution locally and internationally of export-grade yams and staple crops. <strong>In addition to exportation, we proudly supply fresh yams and staple crops to restaurants, schools, hotels, institutions, and many more across Ghana <span title="Ghana" aria-label="Ghana flag">🇬🇭</span>, supporting local businesses and communities.</strong> We work with smallholder farmers across the Volta, Oti and Northern belts and around Ghana to deliver consistent volumes to Afica, Asia ,Europe, USA, and beyond. We are a Strong Faith and Value driven company which guarantees success and prosperity in all our endeavors.</p>
+          <blockquote class="about-quote">“But remember that it is the LORD your God who gives you the power to gain wealth, in order to confirm His covenant that He swore to your fathers even to this day, Amen.<br>Deuteronomy 8:18”</blockquote>
+          <a class="link" href="products.html">Explore products →</a>
+        </div>
+        <div class="media-placeholder" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="stats reveal">
+      <div class="container stat-grid">
+        <div class="stat"><span class="num">200+</span><span class="label">Smallholder Farmers</span></div>
+        <div class="stat"><span class="num">800+</span><span class="label">Acres Under Cultivation</span></div>
+        <div class="stat"><span class="num">1,200t+</span><span class="label">Annual Export Capacity</span></div>
+        <div class="stat"><span class="num">60+</span><span class="label">Direct Jobs</span></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <section>
+        <h4>YAW'S YAMS AND CROPS EXPO.</h4>
+        <p>Exporting premium Ghanaian yams and staple crops.</p>
+      </section>
+      <section>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </section>
+      <section>
+        <h4>Contact</h4>
+        <ul>
+          <li>Email: emmanuelagyei1213@gmail.com</li>
+          <li>Phone: +233 595108757</li>
+          <li>WhatsApp: +233 595108757</li>
+          <li>Address: Dambai, Accra, Ghana</li>
+        </ul>
+      </section>
+    </div>
+    <div class="footer-bottom">© <span id="year"></span> YAW'S YAMS AND CROPS EXPO.. All rights reserved.</div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}})},{threshold:0.2});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    // Hero slider: place images under images/hero or images as 01.jpg, 02.jpg, ...
+    const slider = document.getElementById('hero-slider');
+    const dots = document.getElementById('dots');
+    let current = 0; let timer; let slides=[];
+
+    function imageExists(url){
+      return new Promise(resolve=>{
+        const img = new Image();
+        const done = (ok)=>{ resolve(ok); };
+        img.onload = ()=>done(true);
+        img.onerror = ()=>done(false);
+        const isHttp = /^https?:/i.test(location.protocol);
+        img.src = isHttp ? (url + (url.includes('?')?'&':'?') + 'cb=' + Date.now()) : url;
+      });
+    }
+
+    async function buildSlidesFromFolder(maxCount=30){
+      const baseDirs=['images/hero','images'];
+      const extensions=['jpg','jpeg','png','webp'];
+      const found=[];
+      for(let i=1;i<=maxCount;i++){
+        const numTwo=String(i).padStart(2,'0');
+        const numOne=String(i);
+        let picked=null;
+        for(const base of baseDirs){
+          // Try both two-digit and single-digit numbering
+          const candidatesNums=[numTwo,numOne];
+          for(const num of candidatesNums){
+            for(const ext of extensions){
+              const variants=[ext, ext.toUpperCase()];
+              for(const e of variants){
+                const candidate=`${base}/${num}.${e}`;
+                // eslint-disable-next-line no-await-in-loop
+                if(await imageExists(candidate)){ picked=candidate; break; }
+              }
+              if(picked) break;
+            }
+            if(picked) break;
+          }
+          if(picked) break;
+        }
+        if(picked){ found.push({type:'image', src:picked}); }
+      }
+      if(found.length===0){
+        console.warn('No hero images found under images/hero or images with numbering like 01.jpg or 1.jpg');
+      }
+      slides=found;
+    }
+
+    function renderSlides(){
+      slides.forEach((s, i)=>{
+        let el;
+        if(s.type==='video'){
+          el=document.createElement('div');
+          el.className='slide';
+          const v=document.createElement('video');
+          v.src=s.src; v.autoplay=true; v.loop=true; v.muted=true; v.playsInline=true;
+          el.appendChild(v);
+        } else {
+          el=document.createElement('div');
+          el.className='slide';
+          el.style.backgroundImage=`url(${s.src})`;
+        }
+        if(i===0) el.classList.add('active');
+        slider.appendChild(el);
+        const dot=document.createElement('div'); dot.className='dot'+(i===0?' active':''); dot.dataset.index=i; dots.appendChild(dot);
+      });
+    }
+
+    function go(next){
+      const items=slider.querySelectorAll('.slide');
+      if(items.length===0) return;
+      items[current].classList.remove('active');
+      dots.children[current].classList.remove('active');
+      current=(next+slides.length)%slides.length;
+      items[current].classList.add('active');
+      dots.children[current].classList.add('active');
+    }
+
+    function autoplay(){
+      clearInterval(timer); timer=setInterval(()=>go(current+1), 5000);
+    }
+
+    document.getElementById('prevBtn').addEventListener('click',()=>{go(current-1);autoplay()});
+    document.getElementById('nextBtn').addEventListener('click',()=>{go(current+1);autoplay()});
+    dots.addEventListener('click',e=>{if(e.target.classList.contains('dot')){go(parseInt(e.target.dataset.index,10));autoplay();}});
+
+    (async ()=>{ await buildSlidesFromFolder(30); if(slides.length){ renderSlides(); autoplay(); } })();
+  </script>
+</body>
+</html> 
