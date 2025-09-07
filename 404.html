@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page Not Found – YAW'S YAMS AND CROPS EXPO.</title>
+  <meta name="description" content="The page you're looking for doesn't exist.">
+  <link rel="stylesheet" href="styles/global.css">
+  <style>
+    .error-page {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 0;
+    }
+    .error-content h1 {
+      font-size: 4rem;
+      margin: 0;
+      color: var(--brand);
+    }
+    .error-content h2 {
+      font-size: 1.5rem;
+      margin: 1rem 0;
+      color: var(--text);
+    }
+    .error-content p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="logo" href="index.html">Y&Y</a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="error-page">
+      <div class="error-content">
+        <h1>404</h1>
+        <h2>Page Not Found</h2>
+        <p>The page you're looking for doesn't exist or has been moved.</p>
+        <div>
+          <a class="btn primary" href="index.html">Go Home</a>
+          <a class="btn" href="products.html">View Products</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer style="background: #f9fafb; text-align: center; padding: 20px 0; margin-top: 40px;">
+    <div class="container">
+      <p style="margin: 0; color: var(--muted);">
+        &copy; <span id="year">2024</span> YAW'S YAMS AND CROPS EXPO. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body>
+</html>

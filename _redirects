@@ -1,0 +1,13 @@
+# Netlify redirects file
+# Handle spa routing
+/*    /index.html   200
+
+# Handle 404s
+/404  /index.html   200
+
+# Security headers (optional)
+/*
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
